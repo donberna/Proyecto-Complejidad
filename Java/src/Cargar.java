@@ -119,9 +119,10 @@ public class Cargar extends JFrame{
         File f = new File(fileName);
         String line;
         int i,j;
-        int tamMatrix;
-        int [ ] [ ] matrix;
+        int tamMatriz;
+        int [ ] [ ] matriz;
         int VC;
+        int aristas;
         
         problem.setText("Problema: Vertex Cover");
         
@@ -130,22 +131,23 @@ public class Cargar extends JFrame{
             line = in.readLine();
             
             StringTokenizer st = new StringTokenizer(line);
-        	tamMatrix = returnInt(st.nextToken());
+        	tamMatriz = returnInt(st.nextToken());
         	
+        	aristas = 0;
         	i = 0;
-        	textArea.append(tamMatrix+"\n");
-        	CicloHamiltoniano.setTamMatriz(tamMatrix);
+        	textArea.append(tamMatriz+"\n");
+        	CicloHamiltoniano.setTamMatriz(tamMatriz);
         	
-        	matrix = new int [tamMatrix] [tamMatrix];
+        	matriz = new int [tamMatriz] [tamMatriz];
                                    
             while ((line = in.readLine()) != null) {
             	j = 0;
-            	if(i < tamMatrix){
+            	if(i < tamMatriz){
             		textArea.append(line);  
             		StringTokenizer st3 = new StringTokenizer(line);
             		
-            		while(j < tamMatrix){
-            			matrix [i][j] =  returnInt(st3.nextToken());
+            		while(j < tamMatriz){
+            			matriz [i][j] =  returnInt(st3.nextToken());
             			j++;
             		}
             		
@@ -160,9 +162,24 @@ public class Cargar extends JFrame{
             		textArea.append(line);
             		CicloHamiltoniano.setCH(VC);
             	}
-            }   
+            }  
+            
+            
+            for(int row=0; row<tamMatriz; row++){
+            	for(int col=0; col<tamMatriz; col++){
+            		if(row != col){
+            			if(matriz[row][col] == 1 && matriz[col][row] == 1){
+            				aristas++;
+            				matriz[col][row] = 0;
+            			}
+            		}
+            		//System.out.println(matriz[row][col]);
+            	}
+            }
+            
+            System.out.println(aristas);
 
-            CicloHamiltoniano.setMatrix(matrix);        
+            CicloHamiltoniano.setMatrix(matriz);        
             /*System.out.println(CicloHamiltoniano.getTamMatriz());
             System.out.println(CicloHamiltoniano.getMatrix().length);
             System.out.println(CicloHamiltoniano.getMatrix()[2][2]);

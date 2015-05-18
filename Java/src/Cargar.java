@@ -39,7 +39,7 @@ public class Cargar extends JFrame{
     int [ ] [ ] matriz;
     int VC;
     int aristas;
-    int [ ] [ ]matriz_reduccion;
+    String [ ] [ ]matriz_reduccion;
    
 			
 	public Cargar(){
@@ -185,16 +185,35 @@ public class Cargar extends JFrame{
             }
            
             // se crea la matriz del grafo de la reduccion
-            int tamano = (aristas * 12) + VC+2; 
-            matriz_reduccion =  new int [tamano] [tamano];
+            int tamano = (aristas * 12) + VC+1; 
+            matriz_reduccion =  new String [tamano] [tamano];
             for(i = 0; i<tamano; i++ ){
                 for(j = 0; j<tamano; j++ ){
-                	matriz_reduccion[i][j]=0;
+                	matriz_reduccion[i][j]=""+0;
                 }
             }
       
-      
+            int index=0;
+            while(index<w.size()){
+            	int a = 0;
+            	for(i = 0; i<(aristas * 12); i++ ){
+                    matriz_reduccion[0][i+1] = w.get(index).etiquetas[a];
+                    matriz_reduccion[i+1][0] = w.get(index).etiquetas[a];
+                    a++;
+                    if(a>=12){
+                    	index++;
+                    	a=0;
+                    }
+                }
+            	
+            }
             
+            for(i = 0; i<tamano; i++ ){
+                for(j = 0; j<tamano; j++ ){
+                	System.out.print(matriz_reduccion[i][j]+'\t');
+                }
+                System.out.println('\t');
+            }
             
             in.close();
         }

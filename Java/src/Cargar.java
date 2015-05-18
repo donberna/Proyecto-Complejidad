@@ -1,9 +1,9 @@
 /*
- * Diseñadores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
+ * Diseï¿½adores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
  * 				Yeison Betancourt Solis Codigo: 201153328 - 3743 				
  * 				Andrea Mora Ospina Codigo: 201153685 - 3743
  * 
- * Instituto: Universidad del Valle - 06 Tuluá
+ * Instituto: Universidad del Valle - 06 Tuluï¿½
  */
 
 import java.awt.*;
@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import javax.swing.*;
@@ -19,22 +20,27 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Cargar extends JFrame{
 
-	private JLabel title = new JLabel("CARGAR");
 	private JLabel labelDirectory = new JLabel("Archivo:");
 	private JLabel routeDirectory = new JLabel("");
 	private JLabel superviser = new JLabel();
 	private JLabel problem = new JLabel("Problema: ");
-	private JButton examine = new JButton("Examinar");
 	private JTextArea textArea = new JTextArea(); 
+	private JButton examine = new JButton("Examinar");
 	private JButton bExit = new JButton();
 	private JButton bBack = new JButton();
 	private JButton case1 = new JButton("VC <p HC");
 	private JButton case2 = new JButton("HC <p TS");
 	private JFileChooser archivo = new JFileChooser();
 	
-	String dato;
+	private String dato;
 	
-	CicloHamiltoniano CicloHamiltoniano = new CicloHamiltoniano();
+	// Reduccion 
+	int tamMatriz;
+    int [ ] [ ] matriz;
+    int VC;
+    int aristas;
+    int [ ] [ ]matriz_reduccion;
+   
 			
 	public Cargar(){
 		
@@ -51,7 +57,6 @@ public class Cargar extends JFrame{
 		JScrollPane scrollPane = new JScrollPane(textArea);
 		textArea.setEditable(false);
 		
-		getContentPane().add(title);
 		getContentPane().add(labelDirectory);
 		getContentPane().add(routeDirectory);
 		getContentPane().add(superviser);
@@ -64,8 +69,6 @@ public class Cargar extends JFrame{
 		getContentPane().add(case2);
 		
 		
-		title.setBounds(225, 10, 500, 100);
-		title.setFont(font1);
 		examine.setBounds(240, 150, 100, 40);
 		problem.setBounds(380, 80, 200, 40);
 		scrollPane.setBounds(380, 120, 170, 170);
@@ -105,8 +108,8 @@ public class Cargar extends JFrame{
 	}
 	
 	public int returnInt (String s) {
-        int i = 0;
-
+        
+		int i = 0;
         try {
             i = Integer.parseInt(s.trim());
         } catch (NumberFormatException nfe) {
@@ -115,14 +118,13 @@ public class Cargar extends JFrame{
         return i;
     }
 	
+	
 	private void Init(String fileName) {
-        File f = new File(fileName);
+        
+		File f = new File(fileName);
         String line;
         int i,j;
-        int tamMatriz;
-        int [ ] [ ] matriz;
-        int VC;
-        int aristas;
+        
         
         problem.setText("Problema: Vertex Cover");
         
@@ -134,12 +136,13 @@ public class Cargar extends JFrame{
         	tamMatriz = returnInt(st.nextToken());
         	
         	aristas = 0;
+        	VC = 0;
         	i = 0;
         	textArea.append(tamMatriz+"\n");
-        	CicloHamiltoniano.setTamMatriz(tamMatriz);
         	
         	matriz = new int [tamMatriz] [tamMatriz];
-                                   
+            
+        	// se lee el arcivo de entrada 
             while ((line = in.readLine()) != null) {
             	j = 0;
             	if(i < tamMatriz){
@@ -160,30 +163,39 @@ public class Cargar extends JFrame{
             		StringTokenizer st2 = new StringTokenizer(line);
                 	VC = returnInt(st2.nextToken());
             		textArea.append(line);
-            		CicloHamiltoniano.setCH(VC);
             	}
             }  
             
             
+            ArrayList <Widget> w;
+            w = new <Widget>ArrayList();
+            
+            // Se contabilizan el numero de aristas del grafo a partir de su matriz de adyacencia 
             for(int row=0; row<tamMatriz; row++){
             	for(int col=0; col<tamMatriz; col++){
             		if(row != col){
             			if(matriz[row][col] == 1 && matriz[col][row] == 1){
             				aristas++;
+            				Widget a = new Widget(""+row+col);
+            				w.add(a);
             				matriz[col][row] = 0;
             			}
             		}
-            		//System.out.println(matriz[row][col]);
             	}
             }
+           
+            // se crea la matriz del grafo de la reduccion
+            int tamano = (aristas * 12) + VC+2; 
+            matriz_reduccion =  new int [tamano] [tamano];
+            for(i = 0; i<tamano; i++ ){
+                for(j = 0; j<tamano; j++ ){
+                	matriz_reduccion[i][j]=0;
+                }
+            }
+      
+      
             
-            System.out.println(aristas);
-
-            CicloHamiltoniano.setMatrix(matriz);        
-            /*System.out.println(CicloHamiltoniano.getTamMatriz());
-            System.out.println(CicloHamiltoniano.getMatrix().length);
-            System.out.println(CicloHamiltoniano.getMatrix()[2][2]);
-            System.out.println(CicloHamiltoniano.getVC());*/
+            
             in.close();
         }
         catch (IOException e) { /* Handle exceptions */ }

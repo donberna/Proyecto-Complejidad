@@ -1,9 +1,9 @@
 /*
- * Diseñadores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
+ * Diseï¿½adores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
  * 				Yeison Betancourt Solis Codigo: 201153328 - 3743 				
  * 				Andrea Mora Ospina Codigo: 201153685 - 3743
  * 
- * Instituto: Universidad del Valle - 06 Tuluá
+ * Instituto: Universidad del Valle - 06 Tuluï¿½
  */
 
 import java.awt.*;
@@ -13,8 +13,8 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class VentanaPrincipal extends JFrame{
 
-	private JLabel title1 = new JLabel("PROBLEMA DE COMPLEJIDAD");
-	private JButton case1 = new JButton("<"+"html"+">&nbsp;&nbsp;&nbsp;Cargar<"+"br"+">(VC &lt;p TS)");
+	private JLabel title1 = new JLabel("Reduccion desde VC a TPS");
+	private JButton case1 = new JButton("Iniciar");
 	private JLabel regImg = new JLabel();
 	
 	public VentanaPrincipal(){
@@ -30,6 +30,7 @@ public class VentanaPrincipal extends JFrame{
 		getContentPane().add(title1);
 		getContentPane().add(case1);
 		getContentPane().add(regImg);
+		
 		title1.setBounds(170, 5, 500, 100);
 		title1.setFont(font1);
 

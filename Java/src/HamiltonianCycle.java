@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 /*
- * Diseñadores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
+ * Diseï¿½adores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
  * 				Yeison Betancourt Solis Codigo: 201153328 - 3743 				
  * 				Andrea Mora Ospina Codigo: 201153685 - 3743
  * 
- * Instituto: Universidad del Valle - 06 Tuluá
+ * Instituto: Universidad del Valle - 06 Tuluï¿½
  */
 
 public class HamiltonianCycle {
@@ -61,12 +61,15 @@ public class HamiltonianCycle {
 	
 	// Se llena la matriz de adyacencia con las etiquetas
 	public void fillMatrizTags(int edges, ArrayList<Widget> w){
+		
 		index=0;
-        while(index<w.size()){
+		String [] temporalTags = new String[12];
+		while(index<w.size()){
         	int a = 0;
         	for(i = 0; i<(edges * 12); i++ ){
-        		matriz[0][i+1] = w.get(index).tags[a];
-        		matriz[i+1][0] = w.get(index).tags[a];
+        		temporalTags = w.get(index).getTagsWidget();
+        		matriz[0][i+1] = temporalTags[a];
+        		matriz[i+1][0] = temporalTags[a];
                 a++;
                 if(a>=12){
                 	index++;
@@ -78,15 +81,18 @@ public class HamiltonianCycle {
 	
 	// Se llena la matriz de adyacencia con la matriz de widget
 	public void fillMatrizWidget(ArrayList<Widget> w){
+		
 		index=0;
         row=1;
         col=1;
         colTmp=1;
+        int [][] matrizWidget = new int[12][12];
         while(index<w.size()){
         	col=colTmp;
         	for(i = 1; i<13; i++ ){
         		for(j = 1; j<13; j++ ){
-        			matriz[row][col] = ""+w.get(index).matriz[i-1][j-1];
+        			matrizWidget = w.get(index).getMatrizWidget();
+        			matriz[row][col] = ""+matrizWidget[i-1][j-1];
         			col++;
         		}
         		colTmp++;

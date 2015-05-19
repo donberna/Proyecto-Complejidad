@@ -1,9 +1,9 @@
 /*
- * Diseñadores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
+ * Diseï¿½adores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
  * 				Yeison Betancourt Solis Codigo: 201153328 - 3743 				
  * 				Andrea Mora Ospina Codigo: 201153685 - 3743
  * 
- * Instituto: Universidad del Valle - 06 Tuluá
+ * Instituto: Universidad del Valle - 06 Tuluï¿½
  */
 
 import java.awt.*;
@@ -44,12 +44,13 @@ public class Reduction extends JFrame{
 	// Objetos
 	VertexCover VC = new VertexCover();
 	HamiltonianCycle HC = new HamiltonianCycle();
+	TSP tsp = new TSP(); 
 			
 	public Reduction(){
 		
 		this.setExtendedState(MAXIMIZED_BOTH);		 
 	    setVisible(true);
-		setTitle("Reducción");
+		setTitle("Reducciï¿½n");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		getContentPane().setLayout(null);
@@ -69,7 +70,7 @@ public class Reduction extends JFrame{
 		textAreaVC.setEditable(false);		
 		
 		textAreaInf.setText("Para demostrar que el problema de Agente Viajero es NP completo, \n" +
-							"realizando una reducción desde Vertex Cover, primero reduciremos \n" +
+							"realizando una reducciï¿½n desde Vertex Cover, primero reduciremos \n" +
 							"desde vertex cover a circuito hamiltoniano (VC <p HC) para luego \n" +
 							"reducir de circuito hamiltoniano a agente viajero (HC <p TS)");
 		
@@ -288,6 +289,8 @@ public class Reduction extends JFrame{
 	            	        
 	            HC.fillMatrizConnectionsVertex(VC.getVC());
 	            
+	            textAreaHC.append(""+ (HC.getSizeMatriz()-1)+"\n");
+	            
 	            for(i = 0; i<HC.getSizeMatriz(); i++ ){
 	                for(j = 0; j<HC.getSizeMatriz(); j++ ){
 	                	textAreaHC.append(HC.getMatriz()[i][j]+"\t"); 
@@ -298,8 +301,25 @@ public class Reduction extends JFrame{
 			}
 			
 			if(eve.getSource().equals(case2)){
-
-				textAreaTSP.setText("Programando...");
+	
+				tsp.setSizeMatriz(HC.getSizeMatriz());
+				
+				textAreaTSP.append(""+ (tsp.getSizeMatriz()-1));
+				
+				tsp.setMatrizHC(HC.getMatriz());
+				
+				tsp.makeCompleteGraph();
+				
+				tsp.allocateWeightTSP();
+				
+				for(int i = 0; i<tsp.getSizeMatriz(); i++ ){
+	                for(int j = 0; j<tsp.getSizeMatriz(); j++ ){
+	                	textAreaTSP.append(tsp.getMatriz()[i][j]+"\t"); 
+	                }
+	                textAreaTSP.append("\n");
+	            }
+				
+				
 				
 			}
 			

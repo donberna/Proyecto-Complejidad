@@ -1,15 +1,15 @@
 /*
- * Diseñadores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
+ * Diseï¿½adores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
  * 				Yeison Betancourt Solis Codigo: 201153328 - 3743 				
  * 				Andrea Mora Ospina Codigo: 201153685 - 3743
  * 
- * Instituto: Universidad del Valle - 06 Tuluá
+ * Instituto: Universidad del Valle - 06 Tuluï¿½
  */
 
 public class Widget {
 	
-	int [][] matriz;
-	String [] tags;
+	private int [][] matriz;
+	private String [] tags;
 	
 	public Widget(String tag){
 		matriz = new int[12][12];
@@ -44,5 +44,14 @@ public class Widget {
 			}
 		}
 	} 
+	
+	
+	public int [][] getMatrizWidget(){
+		return matriz;
+	}
+	
+	public String [] getTagsWidget(){
+		return tags;
+	}
 
 }

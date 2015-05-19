@@ -9,8 +9,7 @@
 public class CicloHamiltoniano {
 	
 	private int tamMatriz;	
-	private int [ ] [ ] matrix;
-	private int CH;
+	private String [ ] [ ] matriz;
 	
 	public int getTamMatriz() {
 		return tamMatriz;
@@ -20,20 +19,12 @@ public class CicloHamiltoniano {
 		this.tamMatriz = tamMatriz;
 	}
 
-	public int[][] getMatrix() {
-		return matrix;
+	public String[][] getMatriz() {
+		return matriz;
 	}
 
-	public void setMatrix(int[][] matrix) {
-		this.matrix = matrix;
-	}
-
-	public int getCH() {
-		return CH;
-	}
-
-	public void setCH(int cH) {
-		CH = cH;
+	public void setMatriz(String[][] matriz) {
+		this.matriz = matriz;
 	}
 
 }

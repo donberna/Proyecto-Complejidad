@@ -10,7 +10,7 @@ public class VertexCover {
 	
 	private int aristas;
 	private int VC;
-	private int [ ] [ ] matrix;
+	private int [ ] [ ] matriz;
 	private int tamMatriz;
 	
 	public int getAristas() {
@@ -29,12 +29,12 @@ public class VertexCover {
 		VC = vC;
 	}
 	
-	public int[][] getMatrix() {
-		return matrix;
+	public int[][] getMatriz() {
+		return matriz;
 	}
 
-	public void setMatrix(int[][] matrix) {
-		this.matrix = matrix;
+	public void setMatriz(int[][] matriz) {
+		this.matriz = matriz;
 	}
 	
 	public int getTamMatriz() {

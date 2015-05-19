@@ -1,10 +1,11 @@
 /*
- * Diseï¿½adores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
+ * Diseñadores: Miguel Angel Bernal Colonia Codigo: 201153852 - 3743
  * 				Yeison Betancourt Solis Codigo: 201153328 - 3743 				
  * 				Andrea Mora Ospina Codigo: 201153685 - 3743
  * 
- * Instituto: Universidad del Valle - 06 Tuluï¿½
+ * Instituto: Universidad del Valle - 06 Tuluá
  */
+
 
 public class Principal{
 
@@ -12,12 +13,9 @@ public class Principal{
    
         VentanaPrincipal ventana = new VentanaPrincipal();
         
-   
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     	
-    	//Widget a = new Widget("12");
-        
     }
     
 }

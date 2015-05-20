@@ -16,9 +16,7 @@ public class HamiltonianCycle {
     private int row,col,colTmp;
     private int n,tmp;
     private char pos0,pos2,tmpPos;
-    
-    
-	
+        
 	public int getSizeMatriz() {
 		return sizeMatriz;
 	}
@@ -60,9 +58,10 @@ public class HamiltonianCycle {
 	}
 	
 	// Se llena la matriz de adyacencia con las etiquetas
-	public void fillMatrizTags(int edges, ArrayList<Widget> w){
+	public void fillMatrizTags(int edges, int vc, ArrayList<Widget> w){
 		
 		index=0;
+		tmp=vc+1;
 		String [] temporalTags = new String[12];
 		while(index<w.size()){
         	int a = 0;
@@ -77,6 +76,13 @@ public class HamiltonianCycle {
                 }
             }
         }
+		
+		for(i = matriz.length-1; i>(matriz.length-tmp); i-- ){
+			matriz[i][0] = "v"+vc;
+			matriz[0][i] = "v"+vc;
+			vc--;	
+		}
+		
 	}
 	
 	// Se llena la matriz de adyacencia con la matriz de widget
@@ -104,14 +110,13 @@ public class HamiltonianCycle {
 	}
 	
 	// Se llena la matriz de adyacencia con las conexiones que tienen los widgets
-	public void fillMatrizConnectionsWidgets(int edges){
+	public void fillMatrizConnectionsWidgets(int edges, int vc){
 		n=0;
         tmp=12;
-        i=6;
-        while(n<edges){
+        for(i=6; i<getSizeMatriz(); i+=6){
             pos0 = matriz[i][0].toCharArray()[0];
             pos2 = matriz[i][0].toCharArray()[2];
-            for(j = (tmp+1); j<getMatriz().length-2; j++ ){
+            for(j = (tmp+1); j<getSizeMatriz()-vc; j++ ){
             	if(pos2=='5'){
             		tmpPos='0';
             		if((pos0 == matriz[0][j].toCharArray()[0]) && (tmpPos == matriz[0][j].toCharArray()[2])){
@@ -130,11 +135,8 @@ public class HamiltonianCycle {
             		}
             }
             if(i==tmp){
-            	i++;
-            	tmp*=2;
+            	tmp+=12;
             }
-            i+=6;
-            n++;
         }
 	}
 	

@@ -281,11 +281,11 @@ public class Reduction extends JFrame{
 
 	            HC.fillMatriz(VC.getEdges(),VC.getVC());
 	      
-	            HC.fillMatrizTags(VC.getEdges(),w);
+	            HC.fillMatrizTags(VC.getEdges(),VC.getVC(),w);
 	            
 	            HC.fillMatrizWidget(w);
 	            
-	            HC.fillMatrizConnectionsWidgets(VC.getEdges());
+	            HC.fillMatrizConnectionsWidgets(VC.getEdges(),VC.getVC());
 	            	        
 	            HC.fillMatrizConnectionsVertex(VC.getVC());
 	            
@@ -304,7 +304,7 @@ public class Reduction extends JFrame{
 	
 				tsp.setSizeMatriz(HC.getSizeMatriz());
 				
-				textAreaTSP.append(""+ (tsp.getSizeMatriz()-1));
+				textAreaTSP.append(""+ (tsp.getSizeMatriz()-1)+"\n");
 				
 				tsp.setMatrizHC(HC.getMatriz());
 				
@@ -317,9 +317,7 @@ public class Reduction extends JFrame{
 	                	textAreaTSP.append(tsp.getMatriz()[i][j]+"\t"); 
 	                }
 	                textAreaTSP.append("\n");
-	            }
-				
-				
+	            }		
 				
 			}
 			

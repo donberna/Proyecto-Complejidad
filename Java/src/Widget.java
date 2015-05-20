@@ -44,8 +44,7 @@ public class Widget {
 			}
 		}
 	} 
-	
-	
+		
 	public int [][] getMatrizWidget(){
 		return matriz;
 	}
